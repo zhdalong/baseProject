@@ -13,10 +13,14 @@
 <script type="text/javascript" src="/baseProject/js/jquery.easyui.min.js"></script>
 <meta charset="UTF-8"/>
 <script>
+	$(function(){ 
+		/* $('#tt').datagrid('load', {
+			name:1,
+			pwd :2
+		}); */
+	});   
 	function doSubmit() {
-		$('#tt').datagrid('load', {
-
-		});
+		
 		alert("加载le")
 	}
 </script>
@@ -51,6 +55,7 @@
 	<div data-options="region:'center',iconCls:'icon-ok'">
 		<table id="tt" class="easyui-datagrid"
 			data-options="
+				url:'list',
      			method:'get',
      			border:false,
      			singleSelect:true,
@@ -62,12 +67,12 @@
      			pageSize:10 ">
 			<thead>
 				<tr>
-					<th data-options="field:'itemid'" width="80">Item ID</th>
-					<th data-options="field:'productid'" width="100">Product ID</th>
-					<th data-options="field:'listprice',align:'right'" width="80">List Price</th>
+					<th data-options="field:'name'" width="80">name</th>
+					<th data-options="field:'age'" width="100">age</th>
+					<!-- <th data-options="field:'listprice',align:'right'" width="80">List Price</th>
 					<th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
 					<th data-options="field:'attr1'" width="150">Attribute</th>
-					<th data-options="field:'status',align:'center'" width="60">Status</th>
+					<th data-options="field:'status',align:'center'" width="60">Status</th> -->
 				</tr>
 			</thead>
 		</table>

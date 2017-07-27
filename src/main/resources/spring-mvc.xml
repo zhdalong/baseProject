@@ -9,7 +9,7 @@
 
 	<!-- 配置自动扫描的包 -->
 	<context:component-scan base-package="cn.sn.baseProject"></context:component-scan>
-	<mvc:annotation-driven /> 
+	
 	<!-- 静态资源(js/image)的访问 -->
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
@@ -17,5 +17,42 @@
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/views/"></property>
 		<property name="suffix" value=".jsp"></property>
+	</bean>
+<!-- 	<mvc:annotation-driven />  -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg index="0" ref="utf8NioCharset" />
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="writeAcceptCharset" value="true" />
+			</bean>
+			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="objectMapper" ref="jackson2ObjectMapper" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<bean id="jackson2ObjectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+		<property name="failOnEmptyBeans" value="false" />
+		<property name="indentOutput" value="true" />
+		<property name="dateFormat">
+			<bean class="java.text.SimpleDateFormat">
+				<constructor-arg value="yyyy-MM-dd HH:mm:ss" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="utf8NioCharset" class="java.nio.charset.Charset" factory-method="forName">
+		<constructor-arg index="0" value="UTF-8" />
 	</bean>
 </beans>
