@@ -23,7 +23,13 @@ public class Test {
         System.out.println(false);
         System.out.println("bb");
     }
-
+    public static void main1(String[] args) {
+        System.out.println("aa");
+        System.out.println(false);
+        System.out.println(false);
+        System.out.println(false);
+        System.out.println("bb");
+    }
 
 
 }
