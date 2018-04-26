@@ -19,6 +19,7 @@ public class Test {
         System.out.println("aa");
         System.out.println(false);
         System.out.println(false);
+        System.out.println("cc");
         System.out.println(false);
         System.out.println("bb");
     }
